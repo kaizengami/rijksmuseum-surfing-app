@@ -1,47 +1,51 @@
 import "./Pop-up.scss";
-import { createPopUpData } from "./Data";
+import { createPopUpData, popUpData } from "./Data";
+import { showCards } from "../Cards/Cards";
 
-const popUpHtml = (title, imgUrl, description, makerLine, physicalMedium) => {
-  return `<div class="pop-up">
-                <button class="pop-up-favorite">❤</button>
+const popUpHtml = popUpData => {
+  const { title, imageUrl, description, makerLine, physicalMedium } = popUpData;
+  return `<section class="pop-up">
+                <button class="pop-up-back" value="back">←</button>
+                <button class="pop-up-favorite" value="favorite">❤</button>
                 <h1>${title}</h1>
-                <div class="pop-up-row">
-                    <img src="${imgUrl}">
+                <div class="pop-up-row padding-bottom-20">
+                    <img src="${imageUrl}">
                     <div class="pop-up-description">${description}</div>
                 </div>
-                <div class="pop-up-row padding-top-10">
-                  <span>Maker line:</span>
-                  <div class="maker-line">${makerLine}</div>
-                </div>
-                <div class="pop-up-row">
-                  <span>Physical medium:</span>
-                  <div class="physical-medium">${physicalMedium}</div>
-                </div>
-                <div class="pop-up-row">
-                  <span>Category:</span>
-                  <div class="category"></div>
-                </div>
-                <div class="pop-up-row">
-                  <span>Tags:</span>
-                  <div class="tags"></div>
-                </div>
+                <section class="more-details">
+                  <div class="pop-up-row pop-up-row-hidden">
+                    <span>Maker line:</span>
+                    <div class="maker-line">${makerLine}</div>
+                  </div>
+                  <div class="pop-up-row pop-up-row-hidden">
+                    <span>Physical medium:</span>
+                    <div class="physical-medium">${physicalMedium}</div>
+                  </div>
+                  <div class="pop-up-row pop-up-row-hidden">
+                    <span>Category:</span>
+                    <div class="category"></div>
+                  </div>
+                  <div class="pop-up-row pop-up-row-hidden">
+                    <span>Tags:</span>
+                    <div class="tags"></div>
+                  </div>
+                </section>
                 <div class="pop-up-row space-around">
                     <button class="pop-up-view-more" value="view_more">View more details</button>
                     <button class="pop-up-close" value="close">Close</button>
                 </div>
-            </div>`;
+            </section>`;
 };
 
 const createPopUpHtml = async objectNumber => {
   let popUpData = await createPopUpData(objectNumber);
   await console.log("popUpData" + popUpData);
-  return popUpHtml(
-    popUpData.title,
-    popUpData.imageUrl,
-    popUpData.description,
-    popUpData.makerLine,
-    popUpData.physicalMedium
-  );
+  return popUpHtml(popUpData);
+};
+
+const togglePopUpVisibility = () => {
+  const popUp = document.querySelector(".pop-up");
+  popUp.classList.toggle("pop-up-visible");
 };
 
 const addPopUpEvents = () => {
@@ -50,6 +54,13 @@ const addPopUpEvents = () => {
   buttons.forEach(button => {
     button.addEventListener("click", e => {
       switch (e.target.value) {
+        case "back":
+          console.log("back");
+          buttonBack();
+          break;
+        case "favorite":
+          console.log("favorite");
+          break;
         case "view_more":
           buttonViewMore();
           break;
@@ -62,19 +73,52 @@ const addPopUpEvents = () => {
 };
 
 const buttonViewMore = () => {
-  console.log("View more");
+  showViewMore();
+};
+
+const showViewMore = () => {
+  const popUp = document.querySelector(".pop-up");
+  const popUpBack = document.querySelector(".pop-up-back");
+  const buttonViewMore = document.querySelector(".pop-up-view-more");
+  const buttonClose = document.querySelector(".pop-up-close");
+  const moreDetails = document.querySelectorAll(
+    ".more-details .pop-up-row-hidden"
+  );
+  popUp.classList.add("pop-up-more-details");
+  popUpBack.classList.add("pop-up-back-visible");
+  buttonViewMore.classList.add("button-hide");
+  buttonClose.classList.add("button-hide");
+  toggleCardsVisibility();
+  moreDetails.forEach(rowHidden => {
+    rowHidden.classList.remove("pop-up-row-hidden");
+  });
+};
+
+const toggleCardsVisibility = () => {
+  const cardsList = document.querySelector("main");
+  cardsList.classList.toggle("main-hide");
 };
 
 const buttonClose = e => {
   const popUp = e.target.closest(".pop-up");
+  const selectedCard = document.getElementById(popUpData.objectNumber);
+  showCards(selectedCard);
   popUp.remove();
+};
+
+const buttonBack = () => {
+  const selectedCard = document.getElementById(popUpData.objectNumber);
+  showCards(selectedCard);
+  toggleCardsVisibility();
+  togglePopUpVisibility();
 };
 
 const render = async objectNumber => {
   const popUp = await createPopUpHtml(objectNumber);
   const main = document.querySelector(".main");
-  main.insertAdjacentHTML("beforeend", popUp);
+  main.insertAdjacentHTML("afterend", popUp);
   addPopUpEvents();
+  togglePopUpVisibility();
 };
 
 export default render;

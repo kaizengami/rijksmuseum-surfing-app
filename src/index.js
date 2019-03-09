@@ -4,11 +4,13 @@ import "./index.scss";
 import { createCardsData } from "./components/Cards/Data";
 import { renderDarkLayer } from "./components/TransitionEffects/TransitionEffects";
 import renderFiltersContainer from "./components/Filters/Filters";
-import renderCardsList from "./components/Cards/Cards";
+import { renderCards } from "./components/Cards/Cards";
+import renderPagination from "./components/Pagination/Pagination";
 
 (async () => {
   await createCardsData();
   renderDarkLayer();
   renderFiltersContainer();
-  renderCardsList();
+  renderCards();
+  renderPagination();
 })();

@@ -1,5 +1,5 @@
 .pop-up {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -8,7 +8,22 @@
   color: #8ccff1bd;
   background-color: #303d56be;
   border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.5s ease-in;
+}
+
+.pop-up-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.pop-up-more-details {
+  top: 30px;
+  transform: translate(-50%, 0%);
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .pop-up h1 {
@@ -23,6 +38,13 @@
 .pop-up-row {
   display: flex;
   padding-bottom: 10px;
+  transition: opacity 0.5s ease-in, padding 0.5s ease-in, height 0.5s ease-in;
+}
+
+.pop-up-row-hidden {
+  height: 0px;
+  opacity: 0;
+  padding: 0;
 }
 
 .pop-up-row span {
@@ -35,8 +57,8 @@
   justify-content: space-around;
 }
 
-.padding-top-10 {
-  padding-top: 20px;
+.padding-bottom-20 {
+  padding-bottom: 20px;
 }
 
 .pop-up-favorite {
@@ -46,6 +68,22 @@
   font-size: 50px;
   font-style: normal;
   color: #0d121b94;
+}
+
+.pop-up-back {
+  position: absolute;
+  font-size: 30px;
+  font-weight: 700;
+  color: #8ccff1bd;
+  text-shadow: #8ccff1bd 0px 0px 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-out;
+}
+
+.pop-up-back-visible {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .pop-up-favorite:hover {
@@ -76,6 +114,7 @@
   padding: 5px 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  transition: opacity 0.5s ease-out;
 }
 
 .pop-up-view-more {
@@ -96,4 +135,9 @@
 .pop-up-close:hover {
   color: #ff7e7e;
   text-shadow: #ff7e7e 0px 0px 6px;
+}
+
+.button-hide {
+  opacity: 0;
+  pointer-events: none;
 }

@@ -27,12 +27,16 @@ const addCardEvent = () => {
     const card = e.target.closest(".card");
     if (card === null) return;
     else {
-      toggleSelectedCard(card);
-      blurNotSelectedCards(card.id);
+      applyCardStyles(card);
       console.log(card.id);
       renderPopUp(card.id);
     }
   });
+};
+
+const applyCardStyles = card => {
+  toggleSelectedCard(card);
+  blurNotSelectedCards(card.id);
 };
 
 const toggleSelectedCard = card => {
@@ -64,4 +68,4 @@ const render = () => {
   addCardEvent();
 };
 
-export default render;
+export { render as renderCards, applyCardStyles as showCards };

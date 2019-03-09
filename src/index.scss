@@ -51,4 +51,11 @@ input::placeholder {
   position: absolute;
   height: 100%;
   width: 100%;
+  transition: opacity 0.5s ease-in;
+}
+
+.main-hide {
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
