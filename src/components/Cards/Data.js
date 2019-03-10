@@ -1,4 +1,4 @@
-import { getCards } from "../Api";
+import { getCollection as getCards } from "../Api";
 
 let cards = [];
 

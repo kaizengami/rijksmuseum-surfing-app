@@ -103,14 +103,21 @@ const buttonClose = e => {
   const popUp = e.target.closest(".pop-up");
   const selectedCard = document.getElementById(popUpData.objectNumber);
   showCards(selectedCard);
-  popUp.remove();
+  togglePopUpVisibility();
+  popUp.addEventListener("transitionend", () => {
+    popUp.remove();
+  });
 };
 
 const buttonBack = () => {
+  const popUp = document.querySelector(".pop-up");
   const selectedCard = document.getElementById(popUpData.objectNumber);
   showCards(selectedCard);
   toggleCardsVisibility();
   togglePopUpVisibility();
+  popUp.addEventListener("transitionend", () => {
+    popUp.remove();
+  });
 };
 
 const render = async objectNumber => {
@@ -118,7 +125,9 @@ const render = async objectNumber => {
   const main = document.querySelector(".main");
   main.insertAdjacentHTML("afterend", popUp);
   addPopUpEvents();
-  togglePopUpVisibility();
+  setTimeout(() => {
+    togglePopUpVisibility();
+  }, 50);
 };
 
 export default render;

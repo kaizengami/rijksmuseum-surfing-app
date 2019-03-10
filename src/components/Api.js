@@ -1,8 +1,11 @@
+import settings from "./Settings";
+
 const API_KEY = "0zZyVckt";
 
-const getCollection = async (cards = 10) => {
-  let cardsPerPage = cards;
-  const COLLECTION_API_LINK = `https://www.rijksmuseum.nl/api/nl/collection?key=${API_KEY}&format=json&ps=${cardsPerPage}`;
+const getCollection = async () => {
+  const COLLECTION_API_LINK = `https://www.rijksmuseum.nl/api/nl/collection?key=${API_KEY}&format=json
+  &p=${settings.page}
+  &ps=${settings.cardsPerPage}`;
   try {
     const response = await fetch(COLLECTION_API_LINK);
     if (!response.ok) {
@@ -31,4 +34,4 @@ const getCollectionDetails = async objectNumber => {
   }
 };
 
-export { getCollection as getCards, getCollectionDetails as getCardDetails };
+export { getCollection, getCollectionDetails };

@@ -1,4 +1,4 @@
-import { getCardDetails } from "../Api";
+import { getCollectionDetails as getCardDetails } from "../Api";
 
 let popUp = [];
 

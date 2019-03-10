@@ -1,0 +1,35 @@
+.cards-footer {
+  position: absolute;
+  transform: translate(0, 950px);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #7c92b8;
+  padding: 20px 0;
+}
+
+.cards-footer div {
+  display: flex;
+  flex: 1 1 0;
+}
+
+.cards-footer a {
+  color: #95c8f1;
+  text-shadow: #95c8f1 0px 0px 4px;
+  padding: 0 5px;
+}
+
+.cards-footer a:hover {
+  color: #c6e5ff;
+  text-shadow: #c6e5ff 0px 0px 6px;
+}
+
+.api-credit a {
+  font-size: 14px;
+  color: #7c92b8;
+  text-shadow: none;
+}
+
+.pagination {
+  justify-content: center;
+}

@@ -1,0 +1,24 @@
+.cards-per-page {
+  justify-content: flex-end;
+  color: #95c8f1;
+  text-shadow: #95c8f1 0px 0px 4px;
+  padding: 0 5px;
+}
+
+.cards-per-page button {
+  width: 40px;
+  margin-left: 5px;
+  padding: 3px 5px;
+  background-color: #60799042;
+  border-radius: 2px;
+}
+
+.cards-per-page button:hover {
+  color: #c6e5ff;
+  text-shadow: #c6e5ff 0px 0px 6px;
+  background-color: #60799010;
+}
+
+.cards-per-page button:active {
+  transform: scale(0.9);
+}

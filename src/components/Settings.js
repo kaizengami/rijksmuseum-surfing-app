@@ -4,7 +4,9 @@ const settings = {
     maker: "",
     type: "",
     material: ""
-  }
+  },
+  page: "0",
+  cardsPerPage: "10"
 };
 
 export default settings;

@@ -4,8 +4,22 @@
   width: 1042px;
   margin: 0 auto;
   margin-top: 20px;
-  transition: transform 1.5s ease-in-out !important;
+  opacity: 0;
+  transition: transform 1.5s ease-in-out;
+  animation-name: cards-list-render;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
 }
+
+@keyframes cards-list-render {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .cards-list-transform {
   transform: scale(0.95) !important;
   transition: transform 1s ease-in-out !important;
@@ -18,18 +32,24 @@
   margin: 20px;
   z-index: 1;
   cursor: pointer;
-  transition: transform 1.2s ease-in-out, z-index 1.2s ease-in-out,
-    opacity 1s ease-in-out;
+  transition: transform 1s ease-in-out, z-index 1.2s ease-in-out,
+    opacity 1s ease-in-out 0.3s;
 }
 
 .card:hover .long-title {
   opacity: 1;
 }
+:root {
+  --card-selected-x: 150px;
+  --card-selected-y: 150px;
+}
 
 .card-selected {
   z-index: 200 !important;
   opacity: 0;
-  transform: scale(3.1) translate(150px, 50px) !important;
+  pointer-events: none;
+  transform: scale(2.1)
+    translate(var(--card-selected-x), var(--card-selected-y)) !important;
   transition: transform 1s ease-in-out, z-index 1s ease-in-out,
     opacity 0.5s ease-in-out;
 }

@@ -1,5 +1,6 @@
 import "./cards.scss";
 import { cardsData, calculateCardPositions } from "./Data";
+import renderCards from "./index";
 import { darkLayerToggle } from "../TransitionEffects/TransitionEffects";
 import renderPopUp from "../Pop-up/Pop-up";
 
@@ -14,11 +15,24 @@ const cardHtml = (card, { x, y }) => {
 
 const createCardsHtml = () => {
   const positions = calculateCardPositions(cardsData);
+  const lastPosition = positions[positions.length - 1];
   return (
     '<div class="cards-list">' +
     positions.map((pos, i) => cardHtml(cardsData[i], pos)).join("") +
+    cardsFooter(lastPosition.y) +
     "</div>"
   );
+};
+
+const cardsFooter = y => {
+  return `<footer class="cards-footer" style="transform: translateY(${y +
+    200}px);">
+            <div class="api-credit">
+            <a href="https://www.rijksmuseum.nl/en/api/terms-and-conditions-of-use" target="_blank">
+              App was developed using the Rijksmuseum API
+            </a>
+            </div>
+          </footer>`;
 };
 
 const addCardEvent = () => {
@@ -43,6 +57,9 @@ const toggleSelectedCard = card => {
   const [longTitle] = document.querySelectorAll(
     `[id='${card.id}'] .long-title`
   );
+  const translate = card.style.transform.replace(/[^0-9\-.,]/g, "").split(",");
+  const translateY = `${translate[1] / 2 - 250}px`;
+  card.style.setProperty("--card-selected-y", translateY);
   card.classList.toggle("card-selected");
   longTitle.classList.toggle("long-title-selected");
 };
@@ -61,6 +78,14 @@ const blurNotSelectedCards = selectedId => {
   });
 };
 
+const cardsReload = () => {
+  const cardsList = document.querySelector(".cards-list");
+  cardsList.remove();
+  setTimeout(() => {
+    renderCards();
+  }, 500);
+};
+
 const render = () => {
   const cardsList = createCardsHtml();
   const main = document.querySelector(".main");
@@ -68,4 +93,4 @@ const render = () => {
   addCardEvent();
 };
 
-export { render as renderCards, applyCardStyles as showCards };
+export { render as renderCards, applyCardStyles as showCards, cardsReload };

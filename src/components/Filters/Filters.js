@@ -1,6 +1,6 @@
 import "./Filters.scss";
 import { cardsData, calculateCardPositions } from "../Cards/Data";
-import settings from "../settings";
+import settings from "../Settings";
 
 const filtersHtml = () => {
   return `<div class="filters-container">
