@@ -39,7 +39,6 @@ const popUpHtml = popUpData => {
 
 const createPopUpHtml = async objectNumber => {
   let popUpData = await createPopUpData(objectNumber);
-  await console.log("popUpData" + popUpData);
   return popUpHtml(popUpData);
 };
 
@@ -50,16 +49,13 @@ const togglePopUpVisibility = () => {
 
 const addPopUpEvents = () => {
   const buttons = document.querySelectorAll(".pop-up button");
-  console.log(buttons);
   buttons.forEach(button => {
     button.addEventListener("click", e => {
       switch (e.target.value) {
         case "back":
-          console.log("back");
           buttonBack();
           break;
         case "favorite":
-          console.log("favorite");
           break;
         case "view_more":
           buttonViewMore();

@@ -33,7 +33,7 @@
   z-index: 1;
   cursor: pointer;
   transition: transform 1s ease-in-out, z-index 1.2s ease-in-out,
-    opacity 1s ease-in-out 0.3s;
+    opacity 1s ease-in-out;
 }
 
 .card:hover .long-title {
@@ -41,7 +41,7 @@
 }
 :root {
   --card-selected-x: 150px;
-  --card-selected-y: 150px;
+  --card-selected-y: 250px;
 }
 
 .card-selected {
@@ -51,7 +51,7 @@
   transform: scale(2.1)
     translate(var(--card-selected-x), var(--card-selected-y)) !important;
   transition: transform 1s ease-in-out, z-index 1s ease-in-out,
-    opacity 0.5s ease-in-out;
+    opacity 0.3s ease-in-out;
 }
 
 .card-not-selected {
@@ -110,4 +110,9 @@
   background-color: #303d56be;
   opacity: 1;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.cards-list-footer-hide {
+  opacity: 0;
+  pointer-events: none;
 }

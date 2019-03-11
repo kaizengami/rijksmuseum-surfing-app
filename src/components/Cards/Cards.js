@@ -51,17 +51,22 @@ const addCardEvent = () => {
 const applyCardStyles = card => {
   toggleSelectedCard(card);
   blurNotSelectedCards(card.id);
+  hideCardsFooter();
 };
 
 const toggleSelectedCard = card => {
   const [longTitle] = document.querySelectorAll(
     `[id='${card.id}'] .long-title`
   );
+  centerSelectedCard(card);
+  longTitle.classList.toggle("long-title-selected");
+};
+
+const centerSelectedCard = card => {
   const translate = card.style.transform.replace(/[^0-9\-.,]/g, "").split(",");
   const translateY = `${translate[1] / 2 - 250}px`;
   card.style.setProperty("--card-selected-y", translateY);
   card.classList.toggle("card-selected");
-  longTitle.classList.toggle("long-title-selected");
 };
 
 const blurNotSelectedCards = selectedId => {
@@ -76,6 +81,11 @@ const blurNotSelectedCards = selectedId => {
       card.classList.toggle("card-not-selected");
     }
   });
+};
+
+const hideCardsFooter = () => {
+  const cardsFooter = document.querySelector(".cards-footer");
+  cardsFooter.classList.toggle("cards-list-footer-hide");
 };
 
 const cardsReload = () => {

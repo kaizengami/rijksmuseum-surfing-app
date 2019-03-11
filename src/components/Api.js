@@ -13,6 +13,7 @@ const getCollection = async () => {
     }
     let data = await response.json();
     console.log(data);
+    settings.totalCards = data.count;
     return data.artObjects;
   } catch (err) {
     return err;

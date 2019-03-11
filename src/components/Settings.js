@@ -5,8 +5,9 @@ const settings = {
     type: "",
     material: ""
   },
-  page: "0",
-  cardsPerPage: "10"
+  page: 0,
+  cardsPerPage: 10,
+  totalCards: null
 };
 
 export default settings;

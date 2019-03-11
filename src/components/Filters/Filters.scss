@@ -41,7 +41,7 @@
     inset 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#search:focus + #search-button {
+#search:focus ~ #search-button {
   height: auto;
   padding: 8px 0;
   opacity: 1;

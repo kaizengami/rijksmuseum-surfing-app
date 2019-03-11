@@ -16,8 +16,8 @@ const addButtonsEvent = () => {
     const button = e.target.closest("button");
     if (button === null) return;
     settings.cardsPerPage = button.value;
+    settings.currentPage = 0;
     cardsReload();
-    console.log(settings.cardsPerPage);
   });
 };
 
