@@ -96,6 +96,16 @@ const cardsReload = () => {
   }, 500);
 };
 
+const cardsNotFound = () => {
+  const main = document.querySelector(".main");
+  let cardsList = `<div class="cards-list">
+                      <div class="cards-not-found">
+                        No art object could be found by your query
+                      </div>
+                    </div>`;
+  main.insertAdjacentHTML("beforeend", cardsList);
+};
+
 const render = () => {
   const cardsList = createCardsHtml();
   const main = document.querySelector(".main");
@@ -103,4 +113,9 @@ const render = () => {
   addCardEvent();
 };
 
-export { render as renderCards, applyCardStyles as showCards, cardsReload };
+export {
+  render as renderCards,
+  applyCardStyles as showCards,
+  cardsNotFound,
+  cardsReload
+};

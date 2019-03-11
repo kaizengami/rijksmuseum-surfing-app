@@ -1,6 +1,6 @@
 const settings = {
   filters: {
-    search: "",
+    keyword: "",
     maker: "",
     type: "",
     material: ""

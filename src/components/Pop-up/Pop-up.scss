@@ -147,3 +147,13 @@
   opacity: 0;
   pointer-events: none;
 }
+
+.more-details a {
+  color: #8cf2ffdc;
+  text-shadow: #8cf2ffdc 0px 0px 2px;
+}
+
+.more-details a:hover {
+  color: #a0f2fd;
+  text-shadow: #a0f2fd 0px 0px 4px;
+}

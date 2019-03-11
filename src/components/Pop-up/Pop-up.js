@@ -23,11 +23,13 @@ const popUpHtml = popUpData => {
                   </div>
                   <div class="pop-up-row pop-up-row-hidden">
                     <span>Category:</span>
-                    <div class="category"></div>
+                    <div class="category">${createPopUpLinks(
+                      popUpData.category
+                    )}</div>
                   </div>
                   <div class="pop-up-row pop-up-row-hidden">
                     <span>Tags:</span>
-                    <div class="tags"></div>
+                    <div class="tags">${createPopUpLinks(popUpData.tags)}</div>
                   </div>
                 </section>
                 <div class="pop-up-row space-around">
@@ -35,6 +37,14 @@ const popUpHtml = popUpData => {
                     <button class="pop-up-close" value="close">Close</button>
                 </div>
             </section>`;
+};
+
+const popUpLinkHtml = link => {
+  return `<a href="#${link}">${link}</a>`;
+};
+
+const createPopUpLinks = links => {
+  return links.map(link => popUpLinkHtml(link)).join("");
 };
 
 const createPopUpHtml = async objectNumber => {
