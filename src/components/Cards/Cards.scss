@@ -5,7 +5,7 @@
   margin: 0 auto;
   margin-top: 20px;
   opacity: 0;
-  transition: transform 1.5s ease-in-out;
+  transition: transform 1.5s ease-in-out, filter 1s linear;
   animation-name: cards-list-render;
   animation-duration: 0.3s;
   animation-fill-mode: forwards;
@@ -21,6 +21,7 @@
 }
 
 .cards-list-transform {
+  filter: blur(5px) !important;
   transform: scale(0.95) !important;
   transition: transform 1s ease-in-out !important;
 }
@@ -57,7 +58,6 @@
 .card-not-selected {
   pointer-events: none !important;
   opacity: 0.1 !important;
-  /*filter: blur(10px) grayscale(0.6) !important;*/
 }
 
 .card-hide {

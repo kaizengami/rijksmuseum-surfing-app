@@ -72,11 +72,25 @@ const highlightActiveInput = () => {
   });
 };
 
+const setInputSettings = () => {
+  Object.keys(settings.filters).forEach(name => {
+    const input = document.querySelector(
+      `.filters-container input[name="${name}"]`
+    );
+    input.value = settings.filters[name];
+    console.log(settings.filters[name]);
+  });
+};
+
 const render = () => {
   const main = document.querySelector(".main");
   main.insertAdjacentHTML("beforeend", filtersHtml());
+  setInputSettings();
   addInputEvent();
   addSearchEvent();
 };
 
-export default render;
+export {
+  render as renderFiltersContainer,
+  setInputSettings as updateFiltersDom
+};

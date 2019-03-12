@@ -24,6 +24,28 @@
   transform: translate(-50%, 0%);
   background-color: transparent;
   box-shadow: none;
+  transition: all 0.5s ease-in;
+}
+
+.pop-up-more-details img {
+  animation-name: more-details-img;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+@-webkit-keyframes more-details-img {
+  from {
+    height: 200px;
+  }
+  to {
+    height: 300px;
+  }
+}
+
+.pop-up-more-details .pop-up-favorite {
+  top: -20px;
+  transition: all 0.5s ease-in;
 }
 
 .pop-up h1 {
@@ -45,6 +67,7 @@
   height: 0px;
   opacity: 0;
   padding: 0;
+  pointer-events: none;
 }
 
 .pop-up-row span {

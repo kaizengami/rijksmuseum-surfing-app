@@ -1,6 +1,7 @@
 import "./Pop-up.scss";
 import { createPopUpData, popUpData } from "./Data";
-import { showCards } from "../Cards/Cards";
+import { showCards, cardsReload } from "../Cards/Cards";
+import settings from "../Settings";
 
 const popUpHtml = popUpData => {
   const { title, imageUrl, description, makerLine, physicalMedium } = popUpData;
@@ -126,11 +127,42 @@ const buttonBack = () => {
   });
 };
 
+const addMoreDetailsLinkEvents = () => {
+  const moreDetails = document.querySelector(".more-details");
+  moreDetails.addEventListener("click", e => {
+    let tagName = e.target.tagName.toLowerCase();
+    if (tagName === "a") {
+      let link = e.target;
+      let parentDiv = e.target.closest("div");
+      if (parentDiv.classList.contains("category")) {
+        moreDetailsCardsReload(link);
+      }
+      if (parentDiv.classList.contains("tags")) {
+        moreDetailsCardsReload(link);
+      }
+    }
+  });
+};
+
+const moreDetailsCardsReload = link => {
+  const popUp = document.querySelector(".pop-up");
+  const darkLayer = document.querySelector(".dark-layer");
+  const filtersContainer = document.querySelector(".filters-container");
+  settings.filters.keyword = link.getAttribute("href").replace("#", "");
+  darkLayer.classList.remove("dark-layer-visible");
+  filtersContainer.classList.remove("filters-container-disable");
+  popUp.remove();
+  toggleCardsVisibility();
+  cardsReload();
+  console.log(settings.filters.keyword);
+};
+
 const render = async objectNumber => {
   const popUp = await createPopUpHtml(objectNumber);
   const main = document.querySelector(".main");
   main.insertAdjacentHTML("afterend", popUp);
   addPopUpEvents();
+  addMoreDetailsLinkEvents();
   setTimeout(() => {
     togglePopUpVisibility();
   }, 50);
