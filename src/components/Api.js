@@ -16,7 +16,6 @@ const getCollection = async () => {
       throw new Error(response.statusText);
     }
     let data = await response.json();
-    console.log(data);
     settings.totalCards = data.count;
     return data.artObjects;
   } catch (err) {
@@ -32,7 +31,6 @@ const getCollectionDetails = async objectNumber => {
       throw new Error(response.statusText);
     }
     let data = await response.json();
-    console.log(data);
     return data.artObject;
   } catch (err) {
     return err;

@@ -19,7 +19,6 @@ class PopUp {
 const createPopUpData = async objectNumber => {
   const rawPopUp = await getCardDetails(objectNumber);
   popUp = new PopUp(rawPopUp);
-  console.log(popUp);
   return popUp;
 };
 

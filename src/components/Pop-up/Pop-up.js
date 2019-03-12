@@ -154,7 +154,6 @@ const moreDetailsCardsReload = link => {
   popUp.remove();
   toggleCardsVisibility();
   cardsReload();
-  console.log(settings.filters.keyword);
 };
 
 const render = async objectNumber => {

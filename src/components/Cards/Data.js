@@ -13,7 +13,6 @@ class Card {
 const createCardsData = async () => {
   const rawCardsList = await getCards();
   cards = rawCardsList.map(card => new Card(card));
-  console.log(cards);
   return cards;
 };
 

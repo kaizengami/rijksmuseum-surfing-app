@@ -42,7 +42,6 @@ const addCardEvent = () => {
     if (card === null) return;
     else {
       applyCardStyles(card);
-      console.log(card.id);
       renderPopUp(card.id);
     }
   });

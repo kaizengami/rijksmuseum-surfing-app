@@ -78,7 +78,6 @@ const setInputSettings = () => {
       `.filters-container input[name="${name}"]`
     );
     input.value = settings.filters[name];
-    console.log(settings.filters[name]);
   });
 };
 
