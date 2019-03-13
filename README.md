@@ -42,4 +42,5 @@
 1. Pagination works up to 9999 tiles, because it has been determined empirically than 9999 cards are available. API "count" property did not work right for pagination.
 2. "Number of items per page" control is static even when there are less than 10 cards, which leads to an error.
 3. A selected card is not scaling to the center of the screen because of wrong formula in centerSelectedCard(); (components/Cards/Cards.js)
-4. 
+4. There is a performance issue during the CSS filter “blur effect”. Possible blur effect need to be disabled.
+5. 
