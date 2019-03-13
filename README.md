@@ -17,6 +17,7 @@
 - [x] tiles with images
 - [x] hovering over tile shows the title of the art object
 - [x] click on the tile opens information popup
+- [ ] implement a smooth transformation of a tile into a pop-up
 
 ###	Information popup
 - [x] image
