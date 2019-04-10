@@ -1,4 +1,4 @@
-import "./cards.scss";
+import "./Cards.scss";
 import { cardsData, calculateCardPositions } from "./Data";
 import renderCards from "./index";
 import { darkLayerToggle } from "../TransitionEffects/TransitionEffects";
