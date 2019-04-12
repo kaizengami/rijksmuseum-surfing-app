@@ -1,13 +1,24 @@
-import "./Pop-up.scss";
-import { createPopUpData, popUpData } from "./Data";
-import { showCards, cardsReload } from "../Cards/Cards";
-import settings from "../Settings";
+import './Pop-up.scss';
+import { createPopUpData, popUpData } from './Data';
+import { showCards, cardsReload } from '../Cards/Cards';
+import settings from '../Settings';
+
+let data = {};
+let inFavorite = false;
 
 const popUpHtml = popUpData => {
+  data = popUpData;
+  console.log(data);
   const { title, imageUrl, description, makerLine, physicalMedium } = popUpData;
   return `<section class="pop-up">
                 <button class="pop-up-back" value="back">←</button>
-                <button class="pop-up-favorite" value="favorite">❤</button>
+                <button class="pop-up-favorite 
+                  ${
+                    isInFavoriteList(data.objectNumber) ? 'favorite-active' : ''
+                  }" 
+                  value="favorite">
+                    ❤
+                </button>
                 <h1>${title}</h1>
                 <div class="pop-up-row padding-bottom-20">
                     <img src="${imageUrl}">
@@ -45,7 +56,7 @@ const popUpLinkHtml = link => {
 };
 
 const createPopUpLinks = links => {
-  return links.map(link => popUpLinkHtml(link)).join("");
+  return links.map(link => popUpLinkHtml(link)).join('');
 };
 
 const createPopUpHtml = async objectNumber => {
@@ -54,24 +65,25 @@ const createPopUpHtml = async objectNumber => {
 };
 
 const togglePopUpVisibility = () => {
-  const popUp = document.querySelector(".pop-up");
-  popUp.classList.toggle("pop-up-visible");
+  const popUp = document.querySelector('.pop-up');
+  popUp.classList.toggle('pop-up-visible');
 };
 
 const addPopUpEvents = () => {
-  const buttons = document.querySelectorAll(".pop-up button");
+  const buttons = document.querySelectorAll('.pop-up button');
   buttons.forEach(button => {
-    button.addEventListener("click", e => {
+    button.addEventListener('click', e => {
       switch (e.target.value) {
-        case "back":
+        case 'back':
           buttonBack();
           break;
-        case "favorite":
+        case 'favorite':
+          buttonFavorite(e);
           break;
-        case "view_more":
+        case 'view_more':
           buttonViewMore();
           break;
-        case "close":
+        case 'close':
           buttonClose(e);
           break;
       }
@@ -79,65 +91,79 @@ const addPopUpEvents = () => {
   });
 };
 
+const buttonFavorite = () => {
+  //if ()
+  settings.favorites.push(data);
+  console.log(settings.favorites);
+};
+
+const isInFavoriteList = objectNumber => {
+  for (let favorite of settings.favorites) {
+    console.log(favorite);
+    if (objectNumber === favorite.objectNumber) return true;
+  }
+  return false;
+};
+
 const buttonViewMore = () => {
   showViewMore();
 };
 
 const showViewMore = () => {
-  const popUp = document.querySelector(".pop-up");
-  const popUpBack = document.querySelector(".pop-up-back");
-  const buttonViewMore = document.querySelector(".pop-up-view-more");
-  const buttonClose = document.querySelector(".pop-up-close");
+  const popUp = document.querySelector('.pop-up');
+  const popUpBack = document.querySelector('.pop-up-back');
+  const buttonViewMore = document.querySelector('.pop-up-view-more');
+  const buttonClose = document.querySelector('.pop-up-close');
   const moreDetails = document.querySelectorAll(
-    ".more-details .pop-up-row-hidden"
+    '.more-details .pop-up-row-hidden'
   );
-  popUp.classList.add("pop-up-more-details");
-  popUpBack.classList.add("pop-up-back-visible");
-  buttonViewMore.classList.add("button-hide");
-  buttonClose.classList.add("button-hide");
+  popUp.classList.add('pop-up-more-details');
+  popUpBack.classList.add('pop-up-back-visible');
+  buttonViewMore.classList.add('button-hide');
+  buttonClose.classList.add('button-hide');
   toggleCardsVisibility();
   moreDetails.forEach(rowHidden => {
-    rowHidden.classList.remove("pop-up-row-hidden");
+    rowHidden.classList.remove('pop-up-row-hidden');
   });
 };
 
 const toggleCardsVisibility = () => {
-  const cardsList = document.querySelector("main");
-  cardsList.classList.toggle("main-hide");
+  const cardsList = document.querySelector('main');
+  cardsList.classList.toggle('main-hide');
 };
 
 const buttonClose = e => {
-  const popUp = e.target.closest(".pop-up");
+  const popUp = e.target.closest('.pop-up');
   const selectedCard = document.getElementById(popUpData.objectNumber);
   showCards(selectedCard);
   togglePopUpVisibility();
-  popUp.addEventListener("transitionend", () => {
+  popUp.addEventListener('transitionend', () => {
     popUp.remove();
   });
 };
 
 const buttonBack = () => {
-  const popUp = document.querySelector(".pop-up");
+  const popUp = document.querySelector('.pop-up');
   const selectedCard = document.getElementById(popUpData.objectNumber);
   showCards(selectedCard);
   toggleCardsVisibility();
   togglePopUpVisibility();
-  popUp.addEventListener("transitionend", () => {
+  popUp.addEventListener('transitionend', () => {
     popUp.remove();
   });
 };
 
 const addMoreDetailsLinkEvents = () => {
-  const moreDetails = document.querySelector(".more-details");
-  moreDetails.addEventListener("click", e => {
+  const moreDetails = document.querySelector('.more-details');
+  moreDetails.addEventListener('click', e => {
     let tagName = e.target.tagName.toLowerCase();
-    if (tagName === "a") {
+    if (tagName === 'a') {
       let link = e.target;
-      let parentDiv = e.target.closest("div");
-      if (parentDiv.classList.contains("category")) {
+      let parentDiv = e.target.closest('div');
+      if (parentDiv.classList.contains('category')) {
         moreDetailsCardsReload(link);
       }
-      if (parentDiv.classList.contains("tags")) {
+      if (parentDiv.classList.contains('tags')) {
         moreDetailsCardsReload(link);
       }
     }
@@ -145,12 +171,12 @@ const addMoreDetailsLinkEvents = () => {
 };
 
 const moreDetailsCardsReload = link => {
-  const popUp = document.querySelector(".pop-up");
-  const darkLayer = document.querySelector(".dark-layer");
-  const filtersContainer = document.querySelector(".filters-container");
-  settings.filters.keyword = link.getAttribute("href").replace("#", "");
-  darkLayer.classList.remove("dark-layer-visible");
-  filtersContainer.classList.remove("filters-container-disable");
+  const popUp = document.querySelector('.pop-up');
+  const darkLayer = document.querySelector('.dark-layer');
+  const filtersContainer = document.querySelector('.filters-container');
+  settings.filters.keyword = link.getAttribute('href').replace('#', '');
+  darkLayer.classList.remove('dark-layer-visible');
+  filtersContainer.classList.remove('filters-container-disable');
   popUp.remove();
   toggleCardsVisibility();
   cardsReload();
@@ -158,8 +184,8 @@ const moreDetailsCardsReload = link => {
 
 const render = async objectNumber => {
   const popUp = await createPopUpHtml(objectNumber);
-  const main = document.querySelector(".main");
-  main.insertAdjacentHTML("afterend", popUp);
+  const main = document.querySelector('.main');
+  main.insertAdjacentHTML('afterend', popUp);
   addPopUpEvents();
   addMoreDetailsLinkEvents();
   setTimeout(() => {

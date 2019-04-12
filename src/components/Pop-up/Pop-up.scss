@@ -93,6 +93,15 @@
   color: #0d121b94;
 }
 
+.favorite-active {
+  color: #bf5050;
+  text-shadow: 0 0 5px;
+}
+
+.favorite-active:hover {
+  color: #bf5050 !important;
+}
+
 .pop-up-back {
   position: absolute;
   margin-top: -25px;
