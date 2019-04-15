@@ -435,7 +435,7 @@ a {
   color: #bbcdee;
   background-color: #232d39;
   padding: 10px 0;
-  transition: color 0.3s ease-out, background-color 0.3s ease-out, box-shadow 0.3s ease-out;
+  transition: color 0.3s ease-out, background-color 0.3s ease-out, box-shadow 0.3s ease-out;
   overflow-x: hidden; }
 
 #search:hover {
@@ -465,7 +465,7 @@ a {
   background-color: #313d4d;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   pointer-events: none;
-  transition: height 0.5s ease-out, padding 0.5s ease-out, opacity 0.5s ease-out, font-size 0.5s ease-out; }
+  transition: height 0.5s ease-out, padding 0.5s ease-out, opacity 0.5s ease-out, font-size 0.5s ease-out; }
 
 #search-button:hover {
   background-color: #2a3542;
@@ -487,7 +487,7 @@ a {
   color: #87a0cc;
   text-shadow: #87a0cc 0px 0px 2px;
   padding: 10px 0;
-  transition: color 0.3s ease-out, background-color 0.3s ease-out, box-shadow 0.3s ease-out;
+  transition: color 0.3s ease-out, background-color 0.3s ease-out, box-shadow 0.3s ease-out;
   overflow-x: hidden; }
 
 .input-filter:hover::-webkit-input-placeholder {
@@ -550,7 +550,6 @@ a {
     opacity: 1; } }
 
 .cards-list-transform {
-  filter: blur(5px) !important;
   transform: scale(0.95) !important;
   transition: transform 1s ease-in-out !important; }
 
@@ -561,7 +560,7 @@ a {
   margin: 20px;
   z-index: 1;
   cursor: pointer;
-  transition: transform 1s ease-in-out, z-index 1.2s ease-in-out, opacity 1s ease-in-out; }
+  transition: transform 1s ease-in-out, z-index 1.2s ease-in-out, opacity 1s ease-in-out; }
 
 .card:hover .long-title {
   opacity: 1; }
@@ -575,7 +574,7 @@ a {
   opacity: 0;
   pointer-events: none;
   transform: scale(2.1) translate(var(--card-selected-x), var(--card-selected-y)) !important;
-  transition: transform 1s ease-in-out, z-index 1s ease-in-out, opacity 0.3s ease-in-out; }
+  transition: transform 1s ease-in-out, z-index 1s ease-in-out, opacity 0.3s ease-in-out; }
 
 .card-not-selected {
   pointer-events: none !important;
@@ -601,7 +600,7 @@ a {
   border-radius: 3px 3px 0 0;
   filter: grayscale(0.6);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transition: padding 0.5s ease-in, font-size 0.5s ease-in, height 0.5s ease-in, opacity 0.5s ease-in, color 0.5s ease-in, background-color 0.5s ease-in, border-top 0.5s ease-in; }
+  transition: padding 0.5s ease-in, font-size 0.5s ease-in, height 0.5s ease-in, opacity 0.5s ease-in, color 0.5s ease-in, background-color 0.5s ease-in, border-top 0.5s ease-in; }
 
 .long-title {
   font-size: 14px;
@@ -769,6 +768,13 @@ a {
   font-style: normal;
   color: #0d121b94; }
 
+.favorite-active {
+  color: #bf5050;
+  text-shadow: 0 0 5px; }
+
+.favorite-active:hover {
+  color: #bf5050 !important; }
+
 .pop-up-back {
   position: absolute;
   margin-top: -25px;
@@ -841,4 +847,214 @@ a {
 .more-details a:hover {
   color: #a0f2fd;
   text-shadow: #a0f2fd 0px 0px 4px; }
+
+#favorite-list {
+  position: absolute;
+  text-align: center;
+  left: calc(50% + 260px);
+  z-index: 10;
+  height: 300px;
+  width: 200px;
+  transition: all 0.2s ease-in;
+  top: -300px;
+  pointer-events: scroll; }
+
+.favorite-list-visible {
+  top: -220px !important; }
+
+.favorite-list-show {
+  top: 0px !important;
+  animation: bounce 0.8s;
+  animation-delay: 0.2s; }
+
+#favorite-list-line,
+#favorite-heart,
+#favorite-list-items {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  color: #3eabc4;
+  text-shadow: 0 0 9px; }
+
+#favorite-list-items {
+  font-size: 18px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  bottom: 98px;
+  height: 200px;
+  width: 200px;
+  background: #414c64;
+  border: 1px solid #515f7c;
+  border-radius: 2px;
+  box-shadow: 0px 0px 20px -6px #3fb2ff; }
+
+#favorite-list-items::-webkit-scrollbar {
+  width: 3px;
+  background-color: #2e7e86; }
+
+#favorite-list-items::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #4dc4d1; }
+
+.favorite-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 5px 7px 10px;
+  background: #414c64;
+  border-bottom: 2px solid #2d3647;
+  pointer-events: all;
+  cursor: pointer; }
+
+.favorite-item:hover {
+  background: #384257; }
+
+.favorite-item img {
+  fill: #4dc4d1; }
+
+.favorite-item .icon-trash:hover {
+  transform: scale(1.2);
+  background-color: #e97979; }
+
+.icon-trash {
+  height: 18px;
+  width: 18px;
+  margin-top: 2px;
+  background-color: #4dc4d1;
+  -webkit-mask: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMyA2djE4aDE4di0xOGgtMTh6bTUgMTRjMCAuNTUyLS40NDggMS0xIDFzLTEtLjQ0OC0xLTF2LTEwYzAtLjU1Mi40NDgtMSAxLTFzMSAuNDQ4IDEgMXYxMHptNSAwYzAgLjU1Mi0uNDQ4IDEtMSAxcy0xLS40NDgtMS0xdi0xMGMwLS41NTIuNDQ4LTEgMS0xczEgLjQ0OCAxIDF2MTB6bTUgMGMwIC41NTItLjQ0OCAxLTEgMXMtMS0uNDQ4LTEtMXYtMTBjMC0uNTUyLjQ0OC0xIDEtMXMxIC40NDggMSAxdjEwem00LTE4djJoLTIwdi0yaDUuNzExYy45IDAgMS42MzEtMS4wOTkgMS42MzEtMmg1LjMxNWMwIC45MDEuNzMgMiAxLjYzMSAyaDUuNzEyeiIvPjwvc3ZnPg==) no-repeat center;
+  mask: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMyA2djE4aDE4di0xOGgtMTh6bTUgMTRjMCAuNTUyLS40NDggMS0xIDFzLTEtLjQ0OC0xLTF2LTEwYzAtLjU1Mi40NDgtMSAxLTFzMSAuNDQ4IDEgMXYxMHptNSAwYzAgLjU1Mi0uNDQ4IDEtMSAxcy0xLS40NDgtMS0xdi0xMGMwLS41NTIuNDQ4LTEgMS0xczEgLjQ0OCAxIDF2MTB6bTUgMGMwIC41NTItLjQ0OCAxLTEgMXMtMS0uNDQ4LTEtMXYtMTBjMC0uNTUyLjQ0OC0xIDEtMXMxIC40NDggMSAxdjEwem00LTE4djJoLTIwdi0yaDUuNzExYy45IDAgMS42MzEtMS4wOTkgMS42MzEtMmg1LjMxNWMwIC45MDEuNzMgMiAxLjYzMSAyaDUuNzEyeiIvPjwvc3ZnPg==) no-repeat center; }
+
+.favorite-item-remove {
+  font-size: 0 !important;
+  text-shadow: 0 0 0px !important;
+  transition: all 0.2s ease-in !important; }
+
+.favorite-id {
+  width: 100%;
+  height: 100%;
+  text-align: left; }
+
+#favorite-list-line {
+  font-size: 50px;
+  z-index: -1;
+  font-size: 80px;
+  bottom: 50px;
+  line-height: 70%;
+  /*background: #677aa3;*/ }
+
+#favorite-heart {
+  margin-top: -40px;
+  transform: rotate(180deg);
+  font-size: 80px;
+  z-index: 0;
+  bottom: 4px;
+  margin-right: 1px;
+  color: #3eabc4;
+  pointer-events: none;
+  text-shadow: 0 0 12px; }
+
+#favorite-heart span {
+  z-index: 3;
+  pointer-events: all;
+  cursor: pointer; }
+
+#show-favorites {
+  font-size: 14px;
+  padding-top: 10px;
+  text-transform: uppercase;
+  color: #95e5ff; }
+
+#show-favorites:hover {
+  color: #95e4ffce; }
+
+@-webkit-keyframes bounce {
+  0% {
+    top: 0;
+    animation-timing-function: ease-out; }
+  17% {
+    top: -15px;
+    animation-timing-function: ease-in; }
+  34% {
+    top: 0;
+    animation-timing-function: ease-out; }
+  51% {
+    top: -8px;
+    animation-timing-function: ease-in; }
+  68% {
+    top: 0px;
+    animation-timing-function: ease-out; }
+  85% {
+    top: -3px;
+    animation-timing-function: ease-in; }
+  100% {
+    top: 0; } }
+
+@-moz-keyframes bounce {
+  0% {
+    top: 0;
+    animation-timing-function: ease-out; }
+  17% {
+    top: -15px;
+    animation-timing-function: ease-in; }
+  34% {
+    top: 0;
+    animation-timing-function: ease-out; }
+  51% {
+    top: -8px;
+    animation-timing-function: ease-in; }
+  68% {
+    top: 0px;
+    animation-timing-function: ease-out; }
+  85% {
+    top: -3px;
+    animation-timing-function: ease-in; }
+  100% {
+    top: 0; } }
+
+@keyframes bounce {
+  0% {
+    top: 0;
+    animation-timing-function: ease-out; }
+  17% {
+    top: -15px;
+    animation-timing-function: ease-in; }
+  34% {
+    top: 0;
+    animation-timing-function: ease-out; }
+  51% {
+    top: -8px;
+    animation-timing-function: ease-in; }
+  68% {
+    top: 0px; }
+  85% {
+    top: -3px;
+    animation-timing-function: ease-in; }
+  100% {
+    top: 0; } }
+
+#favorites-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to bottom, #181c23, #1c222a, #202732, #232d39, #273341);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden; }
+
+.favorite-page {
+  width: 900px;
+  margin-top: 20px; }
+
+.favorite-page .pop-up-favorite {
+  position: relative; }
 

@@ -125,6 +125,17 @@
   cursor: pointer;
 }
 
+#show-favorites {
+  font-size: 14px;
+  padding-top: 10px;
+  text-transform: uppercase;
+  color: #95e5ff;
+}
+
+#show-favorites:hover {
+  color: #95e4ffce;
+}
+
 @-webkit-keyframes bounce {
   0% {
     top: 0;

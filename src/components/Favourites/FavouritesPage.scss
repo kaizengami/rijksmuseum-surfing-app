@@ -1,0 +1,33 @@
+#favorites-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    #181c23,
+    #1c222a,
+    #202732,
+    #232d39,
+    #273341
+  );
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.favorite-page {
+  width: 900px;
+  margin-top: 20px;
+}
+
+.favorite-page .pop-up-favorite {
+  position: relative;
+}

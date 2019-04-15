@@ -1,6 +1,10 @@
 import './Pop-up.scss';
 import { createPopUpData, popUpData } from './Data';
 import { showCards, cardsReload } from '../Cards/Cards';
+import {
+  showHideFavoriteList,
+  renderFavoriteList
+} from '../Favourites/FavouritesMenu';
 import settings from '../Settings';
 
 let data = {};
@@ -78,7 +82,9 @@ const addPopUpEvents = () => {
           buttonBack();
           break;
         case 'favorite':
-          buttonFavorite(e);
+          buttonFavorite();
+          showHideFavoriteList();
+          renderFavoriteList();
           break;
         case 'view_more':
           buttonViewMore();
@@ -92,17 +98,35 @@ const addPopUpEvents = () => {
 };
 
 const buttonFavorite = () => {
-  //if ()
-  settings.favorites.push(data);
-  console.log(settings.favorites);
+  toggleFavoriteIcon();
+  if (isInFavoriteList(data.objectNumber)) {
+    console.log('in favorite');
+    removeFromFavoriteList(data.objectNumber);
+    console.log(settings.favorites);
+  } else {
+    console.log('not in favorite');
+    settings.favorites.push(data);
+    console.log(settings.favorites);
+  }
 };
 
 const isInFavoriteList = objectNumber => {
   for (let favorite of settings.favorites) {
-    console.log(favorite);
     if (objectNumber === favorite.objectNumber) return true;
   }
   return false;
+};
+
+const removeFromFavoriteList = object => {
+  settings.favorites.forEach((favorite, index) => {
+    if (favorite.objectNumber === object)
+      return settings.favorites.splice(index, 1);
+  });
+};
+
+const toggleFavoriteIcon = () => {
+  const icon = document.querySelector('.pop-up-favorite');
+  icon.classList.toggle('favorite-active');
 };
 
 const buttonViewMore = () => {
@@ -137,6 +161,7 @@ const buttonClose = e => {
   const selectedCard = document.getElementById(popUpData.objectNumber);
   showCards(selectedCard);
   togglePopUpVisibility();
+  //selectedCard.classList.remove('card-selected')
   popUp.addEventListener('transitionend', () => {
     popUp.remove();
   });
@@ -193,4 +218,4 @@ const render = async objectNumber => {
   }, 50);
 };
 
-export default render;
+export { render as renderPopUp, toggleFavoriteIcon };
