@@ -1,15 +1,15 @@
-import settings from "./Settings";
+import settings from './Settings';
 
-const API_KEY = "0zZyVckt";
+const API_KEY = '0zZyVckt';
 
 const getCollection = async () => {
-  const COLLECTION_API_LINK = `https://www.rijksmuseum.nl/api/en/collection?key=${API_KEY}&format=json
-  &p=${settings.page}
-  &ps=${settings.cardsPerPage}
-  &q=${settings.filters.keyword}
-  &maker=${settings.filters.maker}
-  &type=${settings.filters.type}
-  &material=${settings.filters.material}`;
+  const COLLECTION_API_LINK = `https://www.rijksmuseum.nl/api/en/collection?key=${API_KEY}&format=json&p=${
+    settings.page
+  }&ps=${settings.cardsPerPage}&q=${settings.filters.keyword}&maker=${
+    settings.filters.maker
+  }&type=${settings.filters.type}&material=${settings.filters.material}`;
+  console.log(COLLECTION_API_LINK);
+
   try {
     const response = await fetch(COLLECTION_API_LINK);
     if (!response.ok) {
